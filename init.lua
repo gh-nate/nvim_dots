@@ -21,14 +21,24 @@
 vim.keymap.set('n', 'q', '')
 vim.keymap.set('n', 'K', '')
 
-vim.o.shada = ""
+vim.o.shada = ''
 vim.o.splitbelow = true
 vim.o.splitright = true
 vim.o.wrap = false
 
-local fzf_vim = '/usr/share/doc/fzf/examples/fzf.vim'
-if vim.uv.fs_stat(fzf_vim) then
-  vim.cmd.source(fzf_vim)
+-- From $VIMRUNTIME/example_init.lua
+-- Create a command `:GitBlameLine` that print the git blame for the current line
+vim.api.nvim_create_user_command('GitBlameLine', function()
+  local line_number = vim.fn.line('.') -- Get the current line number. See `:h line()`
+  local filename = vim.api.nvim_buf_get_name(0)
+  print(vim.fn.system({'git', 'blame', '-L', line_number .. ',+1', filename}))
+end, {desc = 'Print the git blame for the current line'})
+
+for _, path in pairs({'vim/vimfiles/plugin', 'doc/fzf/examples'}) do
+  local fzf_vim = '/usr/share/' .. path .. '/fzf.vim'
+  if vim.uv.fs_stat(fzf_vim) then
+    vim.cmd.source(fzf_vim)
+  end
 end
 
 vim.cmd.runtime('local.lua')

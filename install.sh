@@ -31,3 +31,5 @@ mkdir -p "$DEST"
 ln -fs "$PWD/cleanup.sh" "$DEST/nvim_cleanup"
 
 printf 'done\n'
+
+printf 'please :checkhealth\n'
