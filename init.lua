@@ -18,13 +18,18 @@
 -- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 -- SOFTWARE.
 
+vim.keymap.set('n', '`', ':80vsplit +te<CR>')
 vim.keymap.set('n', 'q', '')
+vim.keymap.set('n', 't', ':tab term<CR>')
 vim.keymap.set('n', 'K', '')
 
 vim.o.shada = ''
 vim.o.splitbelow = true
 vim.o.splitright = true
 vim.o.wrap = false
+
+vim.api.nvim_create_autocmd({'TermOpen'}, {command = 'startinsert'})
+vim.api.nvim_create_user_command('Term', 'split +te<CR>', {desc = 'Open a terminal split'})
 
 -- From $VIMRUNTIME/example_init.lua
 -- Create a command `:GitBlameLine` that print the git blame for the current line
