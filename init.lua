@@ -21,7 +21,7 @@
 vim.keymap.set('n', '`', ':80vsplit +te<CR>')
 vim.keymap.set('n', 'q', '')
 vim.keymap.set('n', 't', ':tab term<CR>')
-vim.keymap.set('n', 'K', '')
+vim.keymap.set('n', 'K', ':lua vim.diagnostic.open_float()<CR>')
 
 vim.o.shada = ''
 vim.o.splitbelow = true

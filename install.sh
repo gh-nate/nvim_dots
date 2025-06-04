@@ -26,6 +26,14 @@ DEST="${XDG_CONFIG_HOME:-$HOME/.config}/nvim"
 mkdir -p "$DEST"
 ln -fs "$PWD/init.lua" "$DEST/init.lua"
 
+DEST="$DEST/pack/nvim/start/nvim-lspconfig"
+if cd "$DEST" 2> /dev/null; then
+	git pull --prune
+	cd -
+else
+	git clone https://github.com/neovim/nvim-lspconfig "$DEST"
+fi
+
 DEST="$HOME/.local/bin"
 mkdir -p "$DEST"
 ln -fs "$PWD/cleanup.sh" "$DEST/nvim_cleanup"
