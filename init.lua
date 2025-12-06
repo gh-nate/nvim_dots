@@ -18,7 +18,7 @@
 -- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 -- SOFTWARE.
 
-vim.keymap.set('n', 'q', '')
+vim.keymap.set('n', 'q', '<cmd>checktime<cr>')
 vim.keymap.set('n', 'K', '')
 
 vim.o.shada = ''
